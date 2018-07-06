@@ -1,0 +1,69 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="index.css">
+  <script src="../../assets/js/vue.js"></script>
+</head>
+
+<body>
+
+  <div id="app">
+    <ol>
+      <todo-item-init></todo-item-init>
+    </ol>
+  </div>
+
+  <div id="app-7">
+    <ol>
+      <!--
+        Now we provide each todo-item with the todo object
+        it's representing, so that its content can be dynamic.
+        We also need to provide each component with a "key",
+        which will be explained later.
+      -->
+      <todo-item v-for="item in groceryList" v-bind:todo="item" v-bind:key="item.id">
+      </todo-item>
+    </ol>
+  </div>
+
+  <div id="example">
+    <p>{{ foo }}</p>
+    <!-- this will no longer update `foo`! -->
+    <button v-on:click="a = !a">Change it</button>
+  </div>
+
+  <!-- interpolation -->
+  <span>Message: {{ msg }}</span>
+  <span v-once>This will never change: {{ msg }}</span>
+  <p>Using mustaches: {{ rawHtml }}</p>
+  <p>Using v-html directive:
+    <span v-html="rawHtml"></span>
+  </p>
+  <div v-bind:id="dynamicId"></div>
+  <button v-bind:disabled="isButtonDisabled">Button</button>
+
+  {{ number + 1 }} {{ ok ? 'YES' : 'NO' }} {{ message.split('').reverse().join('') }}
+  <div v-bind:id="'list-' + id"></div>
+
+  <!-- this is a statement, not an expression: -->
+  {{ var a = 1 }}
+  <!-- flow control won't work either, use ternary expressions -->
+  {{ if (ok) { return message } }}
+
+  <!--Modifier-->
+  <form v-on:submit.prevent="onSubmit"> ... </form>
+
+  <!--Shorthand-->
+  <!-- full syntax -->
+  <a v-bind:href="url"> ... </a>
+  <!-- shorthand -->
+  <a :href="url"> ... </a>
+  <!-- full syntax -->
+  <a v-on:click="doSomething"> ... </a>
+  <!-- shorthand -->
+  <a @click="doSomething"> ... </a>
+
+  <script src="index.js"></script>
+</body>
+
+</html>

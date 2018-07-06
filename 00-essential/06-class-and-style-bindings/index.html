@@ -1,0 +1,45 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="./index.css">
+  <script src="../../assets/js/vue.js"></script>
+</head>
+
+<body>
+
+  <div id="app">
+
+<!--class-->
+
+    <div v-bind:class="{ active: isActive }">aze</div>
+    <div class="static" v-bind:class="{ active: isActive, 'text-danger': hasError }">
+      aze
+    </div>
+    <div v-bind:class="classObject1">aze</div>
+    <div v-bind:class="classObject">aze</div>
+    <div v-bind:class="[activeClass, errorClass]">aze</div>
+    <div v-bind:class="[isActive ? activeClass : '', errorClass]">aze</div>
+    <div v-bind:class="[{ active: isActive }, errorClass]">aze</div>
+    
+    <!--component-->
+    
+    <my-component class="baz boo"></my-component>
+    <my-component v-bind:class="{ active: isActive }"></my-component>
+
+    
+  </div>
+  <!--style-->
+  <div id="style">
+      <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }">aze</div>
+      <div v-bind:style="styleObject">aze</div>
+      <div v-bind:style="[baseStyles, overridingStyles]"></div>
+      <div v-bind:style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }"></div>
+  </div>
+
+  
+</body>
+
+<script src="./index.js"></script>
+</body>
+
+</html>
