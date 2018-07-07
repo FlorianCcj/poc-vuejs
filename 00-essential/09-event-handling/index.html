@@ -84,6 +84,34 @@ Here’s the full list of key modifier aliases:
     .right
     // enable `v-on:keyup.f1`
     Vue.config.keyCodes.f1 = 112
+
+    You can use the following modifiers to trigger mouse or keyboard event listeners only when the corresponding modifier key is pressed:
+
+    .ctrl
+    .alt
+    .shift
+    .meta
+<!-- Alt + C -->
+<input @keyup.alt.67="clear">
+
+<!-- Ctrl + Click -->
+<div @click.ctrl="doSomething">Do something</div>
+<!-- this will fire even if Alt or Shift is also pressed -->
+<button @click.ctrl="onClick">A</button>
+
+<!-- this will only fire when Ctrl and no other keys are pressed -->
+<button @click.ctrl.exact="onCtrlClick">A</button>
+
+<!-- this will only fire when no system modifiers are pressed -->
+<button @click.exact="onClick">A</button>
+Mouse Button Modifiers
+
+    New in 2.2.0+
+
+    .left
+    .right
+    .middle
+
   <script src="./index.js"></script>
 </body>
 </html>
