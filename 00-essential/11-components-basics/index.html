@@ -1,0 +1,75 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="./index.css">
+  <script src="../../assets/js/vue.js"></script>
+</head>
+
+<body>
+
+  <div id="app">
+    {{ message }}
+  </div>
+
+  <div id="component-demo">
+    <button-counter></button-counter>
+  </div>
+
+  Since components are reusable Vue instances, they accept the same options as new Vue, such as data, computed, watch, methods,
+  and lifecycle hooks. The only exceptions are a few root-specific options like el.
+
+  <div id="components-demo">
+    <button-counter></button-counter>
+    <button-counter></button-counter>
+    <button-counter></button-counter>
+  </div>
+
+  data option must be a function, If Vue didn’t have this rule, clicking on one button would affect the data of all other instances,
+
+  <div class="vue">
+    <blog-post v-for="post in posts" v-bind:key="post.id" v-bind:title="post.title"></blog-post>
+    <blog-post v-for="post in posts" v-bind:key="post.id" v-bind:post="post" v-on:enlarge-text="postFontSize += $event" v-on:enlarge-text="onEnlargeText"></blog-post>
+  </div>
+
+  <input v-model="searchText"> does the same thing as:
+
+  <input v-bind:value="searchText" v-on:input="searchText = $event.target.value">
+
+  <div class="vue">
+    <alert-box>
+      Something bad happened.
+    </alert-box>
+  </div>
+
+  <!--  EXEMPLE -->
+  <div id="dynamic-component-demo" class="demo">
+      <button
+        v-for="tab in tabs"
+        v-bind:key="tab"
+        v-bind:class="['tab-button', { active: currentTab === tab }]"
+        v-on:click="currentTab = tab"
+      >{{ tab }}</button>
+    
+      <component
+        v-bind:is="currentTabComponent"
+        class="tab"
+      ></component>
+    </div>
+  <!-- END EXEMPLE -->
+
+  Some HTML elements, such as <ul>, <ol>, <table> and <select> have restrictions on what elements can appear inside them, and some elements such as <li>, <tr>, and <option> can only appear inside certain other elements.
+
+      This will lead to issues when using components with elements that have such restrictions. For example:
+      
+      <table>
+        <blog-post-row></blog-post-row>
+      </table>
+
+      <table>
+          <tr is="blog-post-row"></tr>
+        </table>
+
+  <script src="./index.js"></script>
+</body>
+
+</html>
