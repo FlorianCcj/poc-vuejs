@@ -5,9 +5,41 @@
 </head>
 <body>
 
-  <div id="app">
+  <div id="app1">
     {{ message }}
   </div>
+
+<h1>Globall</h1>
+
+Vue.component('component-a', { /* ... */ })
+Vue.component('component-b', { /* ... */ })
+Vue.component('component-c', { /* ... */ })
+
+new Vue({ el: '#app' })
+
+<div id="app">
+    <component-a></component-a>
+    <component-b></component-b>
+    <component-c></component-c>
+  </div>
+
+  The prop is used to pass in an initial value; the child component wants to use it as a local data property afterwards. In this case, it’s best to define a local data property that uses the prop as its initial value:
+
+props: ['initialCounter'],
+data: function () {
+  return {
+    counter: this.initialCounter
+  }
+}
+
+The prop is passed in as a raw value that needs to be transformed. In this case, it’s best to define a computed property using the prop’s value:
+
+props: ['size'],
+computed: {
+  normalizedSize: function () {
+    return this.size.trim().toLowerCase()
+  }
+}
 
   <script src="./index.js"></script>
 </body>
